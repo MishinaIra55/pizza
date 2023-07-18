@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../variables';
 
 .pizza-block {
   width: 280px;
@@ -16,7 +16,7 @@
   &__title {
     font-size: 20px;
     font-weight: 900;
-    letter-spacing: 1%;
+    //letter-spacing: 0.5;
     margin-bottom: 20px;
   }
 
