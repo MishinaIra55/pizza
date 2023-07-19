@@ -2,7 +2,12 @@ import {useState} from "react";
 
 function PizzaBlock ({title, price}) {
 
-    const [count, setCount] = useState(0);
+    const [countPizza, setCountPizza] = useState(0);
+
+    //увеличиваю 0 на 1 при нажатии на кнопку добавить
+    const onAddPizza = () => {
+        setCountPizza(countPizza + 1);
+    }
 
     return (
         <div className="pizza-block">
@@ -26,7 +31,7 @@ function PizzaBlock ({title, price}) {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">{price}</div>
-                <button className="button button--outline button--add">
+                <button onClick={onAddPizza} className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -40,7 +45,7 @@ function PizzaBlock ({title, price}) {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    <i>{countPizza}</i>
                 </button>
             </div>
         </div>
