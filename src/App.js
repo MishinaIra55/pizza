@@ -6,7 +6,6 @@ import PizzaBlock from "./components/PizzaBlock";
 import pizzas from './assets/pizzas.json';
 
 
-
 function App() {
     return (
         <div className="wrapper">
@@ -20,7 +19,7 @@ function App() {
                     <h2 className="content__title">Все пиццы</h2>
                     <div className="content__items">
                         {pizzas.map((item) => (
-                            <PizzaBlock title={item.title}price='170'/>
+                            <PizzaBlock title={item.title} price={item.price}/>
                         ))
                         }
 
