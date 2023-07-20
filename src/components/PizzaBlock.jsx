@@ -1,13 +1,14 @@
 import {useState} from "react";
 
-function PizzaBlock ({title, price, image, sizes}) {
+function PizzaBlock ({title, price, image, sizes, types}) {
 
     const [countPizza, setCountPizza] = useState(0);
 
     //увеличиваю 0 на 1 при нажатии на кнопку добавить
-    const onAddPizza = () => {
+     const onAddPizza = () => {
         setCountPizza(countPizza + 1);
     }
+    const typesNames = ['тонкое', 'традиционное'];
 
     return (
         <div className="pizza-block">
@@ -19,11 +20,14 @@ function PizzaBlock ({title, price, image, sizes}) {
             <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className="active">тонкое</li>
-                    <li>традиционное</li>
+                    {types.map((type) => (
+                        <li>{typesNames[type]}</li>
+                    ))}
                 </ul>
                 <ul>
-                    {sizes.map(size =>  <li>{size} см.</li>)}
+                    {sizes.map((size) =>  (
+                        <li>{size} см.</li>
+                    ))}
                 </ul>
             </div>
             <div className="pizza-block__bottom">

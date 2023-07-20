@@ -24,6 +24,7 @@ function App() {
                                 price={item.price} i
                                 image={item.imageUrl}
                                 sizes={item.sizes}
+                                types={item.types}
                             />
                         ))
                         }
