@@ -3,6 +3,8 @@ import {useState} from "react";
 function PizzaBlock ({title, price, image, sizes, types}) {
 
     const [countPizza, setCountPizza] = useState(0);
+    //state для выбора типа пиццы и ее размера
+    const [typePizza, setTypePizza] = useState(0);
 
     //увеличиваю 0 на 1 при нажатии на кнопку добавить
      const onAddPizza = () => {
@@ -21,7 +23,7 @@ function PizzaBlock ({title, price, image, sizes, types}) {
             <div className="pizza-block__selector">
                 <ul>
                     {types.map((type) => (
-                        <li>{typesNames[type]}</li>
+                        <li className={typePizza === type ? 'active' : ''}>{typesNames[type]}</li>
                     ))}
                 </ul>
                 <ul>
