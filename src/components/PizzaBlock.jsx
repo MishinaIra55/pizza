@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function PizzaBlock ({title, price, image}) {
+function PizzaBlock ({title, price, image, sizes}) {
 
     const [countPizza, setCountPizza] = useState(0);
 
@@ -23,10 +23,7 @@ function PizzaBlock ({title, price, image}) {
                     <li>традиционное</li>
                 </ul>
                 <ul>
-                    <li className="active">26 см.
-                    </li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {sizes.map(size =>  <li>{size} см.</li>)}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
