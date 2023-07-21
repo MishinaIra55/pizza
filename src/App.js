@@ -3,10 +3,13 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import PizzaBlock from "./components/PizzaBlock";
-import pizzas from './assets/pizzas.json';
+import {useState} from "react";
+
 
 
 function App() {
+    const [pizzas, setPizzas] = useState([]);
+
     fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items')
         .then((response) => {
             return response.json()
