@@ -7,6 +7,13 @@ import pizzas from './assets/pizzas.json';
 
 
 function App() {
+    fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items')
+        .then((response) => {
+            return response.json()
+        }).then((array) => {
+        console.log(array)
+    });
+
     return (
         <div className="wrapper">
             <Header/>
