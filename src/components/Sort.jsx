@@ -2,7 +2,8 @@ import {useState} from "react";
 
 function Sort () {
     const [openPopup, setOpenPopup] = useState(false);
-    const menu = ['популярности', 'цене', 'алфавиту']
+    const menu = ['популярности', 'цене', 'алфавиту'];
+    const [selected, setSelected] = useState(0);
 
     return (
         <div className="sort">
@@ -22,14 +23,22 @@ function Sort () {
                 <b>Сортировка по:</b>
                 <span onClick={()=> setOpenPopup(!openPopup)}>популярности</span>
             </div>
-                {openPopup && (
-                    <div className="sort__popup">
-                        <ul>
-
-                        </ul>
-                    </div>
-                )}
-            </div>
+            {openPopup && (
+                <div className="sort__popup">
+                    <ul>
+                        {
+                            menu.map((name, index) => (
+                                <li
+                                    key={index}
+                                    onClick={() => setSelected(index)}
+                                    className={selected === index ? 'active' : ''}>
+                                    {name}
+                                </li>
+                            ))}
+                    </ul>
+                </div>
+            )}
+        </div>
     )
 }
 
