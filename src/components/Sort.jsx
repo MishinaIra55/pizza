@@ -5,6 +5,11 @@ function Sort () {
     const menu = ['популярности', 'цене', 'алфавиту'];
     const [selected, setSelected] = useState(0);
 
+    const onClickMenuItem = (index) => {
+        setSelected(index);
+        setOpenPopup(false);
+    }
+
     return (
         <div className="sort">
             <div className="sort__label">
@@ -21,7 +26,7 @@ function Sort () {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={()=> setOpenPopup(!openPopup)}>популярности</span>
+                <span onClick={()=> setOpenPopup(!openPopup)}>{menu[selected]}</span>
             </div>
             {openPopup && (
                 <div className="sort__popup">
@@ -30,7 +35,7 @@ function Sort () {
                             menu.map((name, index) => (
                                 <li
                                     key={index}
-                                    onClick={() => setSelected(index)}
+                                    onClick={() => onClickMenuItem(index)}
                                     className={selected === index ? 'active' : ''}>
                                     {name}
                                 </li>
