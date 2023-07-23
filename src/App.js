@@ -17,6 +17,7 @@ function App() {
                 return response.json()
             }).then((array) => {
             setPizzas(array);
+            setIsLoading(false);
         });
     }, []);
 
