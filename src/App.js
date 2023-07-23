@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 import Skeleton from "./components/PizzaBlock/Skeleton";
 
 
-
 function App() {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,10 +16,9 @@ function App() {
             .then((response) => {
                 return response.json()
             }).then((array) => {
-               setPizzas(array);
+            setPizzas(array);
         });
-    },[]);
-
+    }, []);
 
 
     return (
@@ -34,16 +32,19 @@ function App() {
                     </div>
                     <h2 className="content__title">Все пиццы</h2>
                     <div className="content__items">
-                        {pizzas.map((item) => (
-                            <PizzaBlock
-                                key={item.id}
-                                title={item.title}
-                                price={item.price} i
-                                image={item.imageUrl}
-                                sizes={item.sizes}
-                                types={item.types}
-                            />
-                        ))
+                        {isLoading
+                            ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
+                            : pizzas.map((item) =>
+                                <PizzaBlock
+                                    key={item.id}
+                                    title={item.title}
+                                    price={item.price} i
+                                    image={item.imageUrl}
+                                    sizes={item.sizes}
+                                    types={item.types}
+                                />
+                            )
+
                         }
 
                     </div>
