@@ -4,6 +4,7 @@ import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import PizzaBlock from "./components/PizzaBlock/PizzaBlock";
 import {useEffect, useState} from "react";
+import Skeleton from "./components/PizzaBlock/Skeleton";
 
 
 
@@ -33,7 +34,7 @@ function App() {
                     <h2 className="content__title">Все пиццы</h2>
                     <div className="content__items">
                         {pizzas.map((item) => (
-                            <PizzaBlock
+                            <Skeleton
                                 key={item.id}
                                 title={item.title}
                                 price={item.price} i
