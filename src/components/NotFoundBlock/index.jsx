@@ -1,7 +1,10 @@
+import styles from './NotFoundBlock.module.scss';
+
 const NotFoundBlock = () => {
     return (
         <>
-            <h1> Not found.Try again.</h1>
+            <h1 className={styles.found}> Not found.Try again.</h1>
+            <p className={styles.description}>К сожалению данная страница отсутствует</p>
         </>
 
     )
