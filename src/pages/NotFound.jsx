@@ -1,6 +1,10 @@
+import NotFoundBlock from "../components/NotFoundBlock";
+
 const NotFound = () => {
     return (
-        <h1> Not found.Try again.</h1>
+        <>
+            <NotFoundBlock/>
+        </>
     )
 }
 
