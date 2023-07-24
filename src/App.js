@@ -6,8 +6,6 @@ import {Route, Routes} from "react-router-dom";
 
 
 function App() {
-
-
     return (
         <div className="wrapper">
             <Header/>
@@ -15,6 +13,7 @@ function App() {
                 <div className="container">
                    <Routes>
                        <Route path='/' element={<Home/>}/>
+                       <Route path='/not-found' element={<NotFound/>}/>
                    </Routes>
                 </div>
             </div>
