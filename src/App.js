@@ -2,6 +2,7 @@ import './scss/app.scss';
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import {Route, Routes} from "react-router-dom";
 
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
             <Header/>
             <div className="content">
                 <div className="container">
-                    <NotFound/>
+                   <Routes>
+                       <Route path='/' element={<Home/>}/>
+                   </Routes>
                 </div>
             </div>
         </div>
