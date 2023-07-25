@@ -21,7 +21,7 @@ import {useEffect, useState} from "react";
     }, []);
 
     return (
-        <>
+        <div className="container">
             <div className="content__top">
                 <Categories/>
                 <Sort/>
@@ -42,7 +42,7 @@ import {useEffect, useState} from "react";
                     )
                 }
             </div>
-        </>
+        </div>
     )
 }
 
