@@ -18,6 +18,7 @@ import {useEffect, useState} from "react";
             setPizzas(array);
             setIsLoading(false);
         });
+        window.scrollTo(0, 0);
     }, []);
 
     return (
