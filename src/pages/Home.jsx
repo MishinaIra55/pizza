@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
  const Home = () => {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
      const [categoryId, setCategoryId] = useState(0);
      const [sortType, setSortType] = useState(0);
 
