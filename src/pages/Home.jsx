@@ -14,6 +14,7 @@ import {useEffect, useState} from "react";
      const [sortType, setSortType] = useState(0);
 
     useEffect(() => {
+        setIsLoading(true);
         fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items?category=' + categoryId)
             .then((response) => {
                 return response.json()
