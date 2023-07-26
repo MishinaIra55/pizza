@@ -6,12 +6,12 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import {useEffect, useState} from "react";
 
 
- const Home = () => {
+const Home = () => {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-     const [categoryId, setCategoryId] = useState(0);
-     const [sortType, setSortType] = useState(0);
+    const [categoryId, setCategoryId] = useState(0);
+    const [sortType, setSortType] = useState(0);
 
     useEffect(() => {
         setIsLoading(true);
@@ -30,9 +30,12 @@ import {useEffect, useState} from "react";
             <div className="content__top">
                 <Categories
                     value={categoryId}
-                    onClickCategory={(index)=> setCategoryId(index)}
+                    onClickCategory={(index) => setCategoryId(index)}
                 />
-                <Sort/>
+                <Sort
+                    value={sortType}
+                    onClickSort={(index) => setSortType(index)}
+                />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">

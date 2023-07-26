@@ -1,13 +1,13 @@
 import {useState} from "react";
 
-function Sort () {
+function Sort ({value, onClickSort}) {
     const [openPopup, setOpenPopup] = useState(false);
     const menu = ['популярности', 'цене', 'алфавиту'];
-    const [selected, setSelected] = useState(0);
-    const sortName = menu[selected];
+
+    const sortName = menu[value];
 
     const onClickMenuItem = (index) => {
-        setSelected(index);
+        onClickSort(index);
         setOpenPopup(false);
     }
 
@@ -37,7 +37,7 @@ function Sort () {
                                 <li
                                     key={index}
                                     onClick={() => onClickMenuItem(index)}
-                                    className={selected === index ? 'active' : ''}>
+                                    className={value === index ? 'active' : ''}>
                                     {name}
                                 </li>
                             ))}
