@@ -14,7 +14,7 @@ import {useEffect, useState} from "react";
      const [sortType, setSortType] = useState(0);
 
     useEffect(() => {
-        fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items')
+        fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items?category=' + categoryId)
             .then((response) => {
                 return response.json()
             }).then((array) => {
@@ -22,7 +22,7 @@ import {useEffect, useState} from "react";
             setIsLoading(false);
         });
         window.scrollTo(0, 0);//при первом рендере scroll вверх
-    }, []);
+    }, [categoryId]);
 
     return (
         <div className="container">
