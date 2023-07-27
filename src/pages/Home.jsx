@@ -18,7 +18,12 @@ const Home = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch('https://64ba32de5e0670a501d5cb15.mockapi.io/items?category=' + categoryId)
+
+        const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
+        const sortBy = sortType.sortProperty.replace('-', '');//удалить минус из свойства если он будет
+        const category = categoryId > 0 ? `category=${categoryId}` : '';
+
+        fetch(`https://64ba32de5e0670a501d5cb15.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`)
             .then((response) => {
                 return response.json()
             }).then((array) => {

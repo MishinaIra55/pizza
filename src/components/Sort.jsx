@@ -3,9 +3,12 @@ import {useState} from "react";
 function Sort ({value, onClickSort}) {
     const [openPopup, setOpenPopup] = useState(false);
     const menu = [
-        {name: 'популярности ', sortProperty: 'rating'},
-        {name: 'цене  ', sortProperty: 'price'},
-        {name: 'алфавиту  ', sortProperty: 'title'},
+        {name: 'популярности ASC', sortProperty: 'rating'},
+        {name: 'популярности DESC', sortProperty: '-rating'},
+        {name: 'цене  ASC', sortProperty: 'price'},
+        {name: 'цене  DESC', sortProperty: '-price'},
+        {name: 'алфавиту ASC ', sortProperty: 'title'},
+        {name: 'алфавиту DESC ', sortProperty: '-title'},
     ];
 
 
