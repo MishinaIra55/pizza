@@ -2,9 +2,13 @@ import {useState} from "react";
 
 function Sort ({value, onClickSort}) {
     const [openPopup, setOpenPopup] = useState(false);
-    const menu = ['популярности', 'цене', 'алфавиту'];
+    const menu = [
+        {name: 'популярности ', sortProperty: 'rating'},
+        {name: 'цене  ', sortProperty: 'price'},
+        {name: 'алфавиту  ', sortProperty: 'title'},
+    ];
 
-    const sortName = menu[value];
+
 
     const onClickMenuItem = (index) => {
         onClickSort(index);
@@ -27,18 +31,18 @@ function Sort ({value, onClickSort}) {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={()=> setOpenPopup(!openPopup)}>{sortName}</span>
+                <span onClick={()=> setOpenPopup(!openPopup)}>{value.name}</span>
             </div>
             {openPopup && (
                 <div className="sort__popup">
                     <ul>
                         {
-                            menu.map((name, index) => (
+                            menu.map((menu, index) => (
                                 <li
                                     key={index}
-                                    onClick={() => onClickMenuItem(index)}
-                                    className={value === index ? 'active' : ''}>
-                                    {name}
+                                    onClick={() => onClickMenuItem(menu)}
+                                    className={value.sortProperty === menu.sortProperty ? 'active' : ''}>
+                                    {menu.name}
                                 </li>
                             ))}
                     </ul>

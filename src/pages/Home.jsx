@@ -11,7 +11,10 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [categoryId, setCategoryId] = useState(0);
-    const [sortType, setSortType] = useState(0);
+    const [sortType, setSortType] = useState({
+        name: 'популярности ',
+        sortProperty: 'rating',
+    });
 
     useEffect(() => {
         setIsLoading(true);
@@ -23,7 +26,7 @@ const Home = () => {
             setIsLoading(false);
         });
         window.scrollTo(0, 0);//при первом рендере scroll вверх
-    }, [categoryId]);
+    }, [categoryId, sortType]);
 
     return (
         <div className="container">
