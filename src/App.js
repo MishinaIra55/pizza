@@ -5,9 +5,12 @@ import NotFound from "./pages/NotFound";
 import Cart from './pages/Cart';
 
 import {Route, Routes} from "react-router-dom";
+import {useState} from "react";
 
 
 function App() {
+    const [searchValue, setSearchValue] = useState('');
+
     return (
         <div className="wrapper">
             <Header/>
