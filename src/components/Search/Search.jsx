@@ -1,7 +1,7 @@
 import styles from './Search.module.scss';
 import { ReactComponent as MySVGIcon } from './MySVG.svg';
 
-const Search = () => {
+const Search = ({searchValue, setSearchValue}) => {
     return (
         <div className={styles.container}>
             <input className={styles.root} placeholder="Search pizza..." />
