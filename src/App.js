@@ -13,7 +13,7 @@ function App() {
 
     return (
         <div className="wrapper">
-            <Header/>
+            <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
             <div className="content">
 
                    <Routes>
