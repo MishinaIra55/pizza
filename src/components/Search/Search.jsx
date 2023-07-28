@@ -1,6 +1,8 @@
+import styles from './Search.module.scss';
+
 const Search = () => {
     return (
-        <input placeholder="Search pizza..."/>
+        <input className={styles.root} placeholder="Search pizza..."/>
     )
 }
 
