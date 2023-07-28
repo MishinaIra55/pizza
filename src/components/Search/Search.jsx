@@ -6,8 +6,10 @@ const Search = ({searchValue, setSearchValue}) => {
         <div className={styles.container}>
             <input
                 value={searchValue}
+                onChange={(event) => setSearchValue(event.target.value)}
                 className={styles.root}
                 placeholder="Search pizza..."
+                onClick={()=> setSearchValue('')}
             />
             <div className={styles.svgContainer}>
                 <MySVGIcon className={styles.svgIcon} />
