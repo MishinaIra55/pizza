@@ -1,6 +1,23 @@
+.container {
+  position: relative;
+}
+
+.svgContainer {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  margin-top: 4px;
+}
+
 .root {
-border: 1px solid coral;
-  padding: 10px 20px;
-  width: 300px;
-  font-size: 16px;
+ padding: 10px 20px;
+  border: 1px solid coral;
+  border-radius: 5%;
+  font-size: 14px;
+}
+
+.svgIcon {
+
 }
