@@ -6,6 +6,7 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import {useEffect, useState} from "react";
 
 
+
 const Home = ({searchValue}) => {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -63,9 +64,8 @@ const Home = ({searchValue}) => {
                 {isLoading
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
                     : itemsPizzas}
-
-
             </div>
+
         </div>
     )
 }
