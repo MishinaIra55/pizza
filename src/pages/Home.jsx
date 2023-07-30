@@ -67,7 +67,7 @@ const Home = ({searchValue}) => {
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
                     : itemsPizzas}
             </div>
-                <Pagination/>
+                <Pagination onChangePage={number => setCurrentPagination(number)}/>
         </div>
     )
 }
