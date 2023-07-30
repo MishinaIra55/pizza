@@ -4,6 +4,7 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 
 import {useEffect, useState} from "react";
+import Pagination from "../components/Pagination";
 
 
 
@@ -65,7 +66,7 @@ const Home = ({searchValue}) => {
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
                     : itemsPizzas}
             </div>
-
+                <Pagination/>
         </div>
     )
 }
