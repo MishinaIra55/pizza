@@ -6,7 +6,7 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import {useEffect, useState} from "react";
 
 
-const Home = () => {
+const Home = ({searchValue}) => {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
