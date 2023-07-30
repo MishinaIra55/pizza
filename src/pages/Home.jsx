@@ -22,8 +22,9 @@ const Home = ({searchValue}) => {
         const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
         const sortBy = sortType.sortProperty.replace('-', '');//удалить минус из свойства если он будет
         const category = categoryId > 0 ? `category=${categoryId}` : '';
+        const search = searchValue  ? `&search=${searchValue}` : '';
 
-        fetch(`https://64ba32de5e0670a501d5cb15.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`)
+        fetch(`https://64ba32de5e0670a501d5cb15.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}`)
             .then((response) => {
                 return response.json()
             }).then((array) => {
@@ -31,14 +32,10 @@ const Home = ({searchValue}) => {
             setIsLoading(false);
         });
         window.scrollTo(0, 0);//при первом рендере scroll вверх
-    }, [categoryId, sortType]);
+    }, [categoryId, sortType, searchValue]);
 
-    const itemsPizzas = pizzas.filter((obj) => {
-        if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-            return true;
-        }
-        return false;
-    })
+    const itemsPizzas = pizzas
+
         .map((item) =>
         <PizzaBlock
             key={item.id}
