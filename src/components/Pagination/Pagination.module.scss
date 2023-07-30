@@ -1,3 +1,33 @@
 .root {
+  li {
+    display: inline-block;
+  }
 
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid coral;
+    border-radius: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: coral;
+
+    &:hover {
+      background-color: coral;
+      color: white;
+    }
+  }
+}
+
+:global {
+  .selected {
+    a {
+      background-color: coral;
+      color: white;
+    }
+  }
 }
