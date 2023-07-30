@@ -1,6 +1,9 @@
 .root {
+
+
   li {
     display: inline-block;
+
   }
 
   a {
@@ -29,5 +32,9 @@
       background-color: coral;
       color: white;
     }
+  }
+  ul {
+    display: flex;
+    justify-content:  center;
   }
 }
