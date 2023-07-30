@@ -33,6 +33,22 @@ const Home = ({searchValue}) => {
         window.scrollTo(0, 0);//при первом рендере scroll вверх
     }, [categoryId, sortType]);
 
+    const itemsPizzas = pizzas.filter((obj) => {
+        if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+            return true;
+        }
+        return false;
+    })
+        .map((item) =>
+        <PizzaBlock
+            key={item.id}
+            title={item.title}
+            price={item.price} i
+            image={item.imageUrl}
+            sizes={item.sizes}
+            types={item.types}
+            />);
+
     return (
         <div className="container">
             <div className="content__top">
@@ -49,17 +65,9 @@ const Home = ({searchValue}) => {
             <div className="content__items">
                 {isLoading
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
-                    : pizzas.map((item) =>
-                        <PizzaBlock
-                            key={item.id}
-                            title={item.title}
-                            price={item.price} i
-                            image={item.imageUrl}
-                            sizes={item.sizes}
-                            types={item.types}
-                        />
-                    )
-                }
+                    : itemsPizzas}
+
+
             </div>
         </div>
     )
