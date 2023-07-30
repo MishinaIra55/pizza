@@ -17,6 +17,7 @@ const Home = ({searchValue}) => {
         name: 'популярности ',
         sortProperty: 'rating',
     });
+    const [currentPagination, setCurrentPagination] = useState(1);
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,7 +27,7 @@ const Home = ({searchValue}) => {
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue  ? `&search=${searchValue}` : '';
 
-        fetch(`https://64ba32de5e0670a501d5cb15.mockapi.io/items?page=1&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
+        fetch(`https://64ba32de5e0670a501d5cb15.mockapi.io/items?page=${currentPagination}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
             .then((response) => {
                 return response.json()
             }).then((array) => {
@@ -34,7 +35,7 @@ const Home = ({searchValue}) => {
             setIsLoading(false);
         });
         window.scrollTo(0, 0);//при первом рендере scroll вверх
-    }, [categoryId, sortType, searchValue]);
+    }, [categoryId, sortType, searchValue, currentPagination]);
 
     const itemsPizzas = pizzas
 
