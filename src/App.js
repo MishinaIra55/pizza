@@ -5,7 +5,9 @@ import NotFound from "./pages/NotFound";
 import Cart from './pages/Cart';
 
 import {Route, Routes} from "react-router-dom";
-import {useState} from "react";
+import {createContext, useState} from "react";
+
+export const SearchContext = createContext();
 
 
 function App() {
