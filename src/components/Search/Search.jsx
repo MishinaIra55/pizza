@@ -1,7 +1,11 @@
 import styles from './Search.module.scss';
 import { ReactComponent as MySVGIcon } from './MySVG.svg';
+import {useContext} from "react";
+import {SearchContext} from "../../App";
 
-const Search = ({searchValue, setSearchValue}) => {
+const Search = () => {
+    const {searchValue, setSearchValue} = useContext(SearchContext);
+
     return (
         <div className={styles.container}>
             <input
