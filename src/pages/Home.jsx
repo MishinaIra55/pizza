@@ -7,6 +7,7 @@ import {useContext, useEffect, useState} from "react";
 import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
+import {setCategoryId} from "../redux/slices/filterSlice";
 
 
 
@@ -27,8 +28,8 @@ const Home = () => {
     const [currentPagination, setCurrentPagination] = useState(1);
 
     const onChangeCategory = (index) => {
-        console.log(index);
-    }
+        dispatch(setCategoryId(index))
+  };
 
     useEffect(() => {
         setIsLoading(true);
