@@ -6,12 +6,13 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import {useContext, useEffect, useState} from "react";
 import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 
 const Home = () => {
     const categoryId = useSelector((state) => state.filter.categoryId);
+    const dispatch = useDispatch();
 
     const {searchValue} = useContext(SearchContext);
 
@@ -24,6 +25,10 @@ const Home = () => {
         sortProperty: 'rating',
     });
     const [currentPagination, setCurrentPagination] = useState(1);
+
+    const onChangeCategory = (index) => {
+        console.log(index);
+    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -60,7 +65,7 @@ const Home = () => {
             <div className="content__top">
                 <Categories
                     value={categoryId}
-                    onClickCategory={(index) => setCategoryId(index)}
+                    onClickCategory={ onChangeCategory}
                 />
                 <Sort
                     value={sortType}
