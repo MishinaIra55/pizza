@@ -1,6 +1,8 @@
 import {useState} from "react";
 
-function Sort ({value, onClickSort}) {
+function Sort () {
+
+
     const [openPopup, setOpenPopup] = useState(false);
     const menu = [
         {name: 'популярности ASC', sortProperty: 'rating'},
