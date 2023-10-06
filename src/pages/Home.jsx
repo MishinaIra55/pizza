@@ -15,6 +15,8 @@ const Home = () => {
     const categoryId = useSelector((state) => state.filter.categoryId);
     const dispatch = useDispatch();
 
+    const sortType = useSelector((state) => state.filter.sort.sortProperty);
+
     const {searchValue} = useContext(SearchContext);
 
     const [pizzas, setPizzas] = useState([]);
@@ -30,8 +32,8 @@ const Home = () => {
     useEffect(() => {
         setIsLoading(true);
 
-        const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
-        const sortBy = sortType.sortProperty.replace('-', '');//удалить минус из свойства если он будет
+        const order = sortType.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
+        const sortBy = sortType.replace('-', '');//удалить минус из свойства если он будет
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue  ? `&search=${searchValue}` : '';
 
