@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategoryId} from "../redux/slices/filterSlice";
+import axios from "axios";
 
 
 
@@ -37,13 +38,14 @@ const Home = () => {
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue  ? `&search=${searchValue}` : '';
 
-        fetch(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPagination}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
+
+        axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPagination}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
             .then((response) => {
-                return response.json()
-            }).then((array) => {
-            setPizzas(array);
-            setIsLoading(false);
-        });
+                setPizzas(response.data);
+                setIsLoading(false);
+            })
+
+
         window.scrollTo(0, 0);//при первом рендере scroll вверх
     }, [categoryId, sortType, searchValue, currentPagination]);
 
