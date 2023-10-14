@@ -1,6 +1,6 @@
 import styles from './Search.module.scss';
 import { ReactComponent as MySVGIcon } from './MySVG.svg';
-import {useCallback, useContext, useRef, useState} from "react";
+import { useContext, useRef, useState} from "react";
 import {SearchContext} from "../../App";
 import debounce from 'lodash.debounce';
 
@@ -15,12 +15,9 @@ const Search = () => {
         inputRef.current.focus();
     };
 
-    const updateSearchValue = useCallback(
-        debounce((str) => {
-            setSearchValue(str);
-        }, 1000),
-        []
-    );
+    const updateSearchValue = debounce((str) => {
+        setSearchValue(str);
+    }, 1000);
 
     const onChangeInput = (event) => {
         setValue(event.target.value);
