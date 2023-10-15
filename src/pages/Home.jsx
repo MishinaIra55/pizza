@@ -1,13 +1,13 @@
 import Categories from "../components/Categories";
-import Sort from "../components/Sort";
+import Sort, {menu} from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
-import {setCategoryId, setCurrentPage} from "../redux/slices/filterSlice";
+import {setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
 import axios from "axios";
 import qs from "qs";
 
@@ -16,11 +16,12 @@ import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
-    const categoryId = useSelector((state) => state.filter.categoryId);
+    const {categoryId, currentPage, sort } = useSelector((state) => state.filter);
     const dispatch = useDispatch();
 
-    const sortType = useSelector((state) => state.filter.sort.sortProperty);
-    const currentPage = useSelector((state) => state.filter.currentPage);
+
+    const isMounted = useRef(false);
+    const isSearch = useRef(false);
 
     const {searchValue} = useContext(SearchContext);
 
@@ -38,18 +39,11 @@ const Home = () => {
         dispatch(setCurrentPage(number));
     };
 
-    useEffect(() => {
-        if(window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
-            console.log(params);
-        }
-    })
-
-    useEffect(() => {
+    const fetchPizzas = () => {
         setIsLoading(true);
 
-        const order = sortType.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
-        const sortBy = sortType.replace('-', '');//удалить минус из свойства если он будет
+        const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
+        const sortBy = sort.sortProperty.replace('-', '');//удалить минус из свойства если он будет
         const category = categoryId > 0 ? `category=${categoryId}` : '';
         const search = searchValue  ? `&search=${searchValue}` : '';
 
@@ -59,20 +53,46 @@ const Home = () => {
                 setPizzas(response.data);
                 setIsLoading(false);
             })
+    };
 
-
-        window.scrollTo(0, 0);//при первом рендере scroll вверх
-    }, [categoryId, sortType, searchValue, currentPage]);
-
+    //если быд первый рендер то проверяем url параметры и сохраняем в редуксе
     useEffect(() => {
-        const queryString = qs.stringify({
-            categoryId,
-            currentPage,
-            sortType
-        });
+        if(window.location.search) {
+            const params = qs.parse(window.location.search.substring(1));
 
-        navigate(`?${queryString}`);
-    }, [categoryId, sortType, navigate, currentPage]);
+            const sort = menu.find((object) => object.sortProperty === params.sortProperty)
+
+            dispatch(
+                setFilters({
+                    ...params,
+                    sort,
+                })
+            )
+            isSearch.current = true;
+        }
+    },[]);
+
+    //если быд первый рендер то запрашиваем пиццы
+    useEffect(() => {
+        window.scrollTo(0, 0);//при первом рендере scroll вверх
+        if(!isSearch.current) {
+            fetchPizzas();
+        }
+        }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+
+    //ксли был первый рендер и изменили параметры
+    useEffect(() => {
+        if (isMounted.current) {
+            const queryString = qs.stringify({
+                categoryId,
+                currentPage,
+                sortProperty:sort.sortProperty,
+            });
+
+            navigate(`?${queryString}`);
+        }
+        isMounted.current = true;
+    }, [categoryId, sort.sortProperty, navigate, currentPage]);
 
 
     const itemsPizzas = pizzas
