@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCategoryId, setCurrentPage} from "../redux/slices/filterSlice";
 import axios from "axios";
 import qs from "qs";
-import sort from "../components/Sort";
+
 import { useNavigate } from "react-router-dom";
 
 
@@ -36,7 +36,14 @@ const Home = () => {
 
     const onChangePage = number => {
         dispatch(setCurrentPage(number));
-    }
+    };
+
+    useEffect(() => {
+        if(window.location.search) {
+            const params = qs.parse(window.location.search.substring(1));
+            console.log(params);
+        }
+    })
 
     useEffect(() => {
         setIsLoading(true);
@@ -65,7 +72,7 @@ const Home = () => {
         });
 
         navigate(`?${queryString}`);
-    }, [categoryId, sortType, searchValue, currentPage]);
+    }, [categoryId, sortType, navigate, currentPage]);
 
 
     const itemsPizzas = pizzas
