@@ -9,6 +9,9 @@ import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategoryId, setCurrentPage} from "../redux/slices/filterSlice";
 import axios from "axios";
+import qs from "qs";
+import sort from "../components/Sort";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,7 +27,7 @@ const Home = () => {
     const [pizzas, setPizzas] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
+    const navigate = useNavigate();
 
 
     const onChangeCategory = (index) => {
@@ -53,6 +56,17 @@ const Home = () => {
 
         window.scrollTo(0, 0);//при первом рендере scroll вверх
     }, [categoryId, sortType, searchValue, currentPage]);
+
+    useEffect(() => {
+        const queryString = qs.stringify({
+            categoryId,
+            currentPage,
+            sortType
+        });
+
+        navigate(`?${queryString}`);
+    }, [categoryId, sortType, searchValue, currentPage]);
+
 
     const itemsPizzas = pizzas
 
