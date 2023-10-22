@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setSort} from "../redux/slices/filterSlice";
 
@@ -24,7 +24,22 @@ function Sort () {
         // onClickSort(index);
         setOpenPopup(false);
         dispatch(setSort(index));
-    }
+    };
+
+    useEffect(() => {
+
+        const handleClickOutside = (event) => {
+            if (event.path && !event.path.includes(sortRef.current)) {
+                setOpenPopup(false);
+
+            }
+        }
+        document.body.addEventListener("click", handleClickOutside);
+        return () =>
+
+            document.body.removeEventListener('click', handleClickOutside)
+    }, []);
+
 
     return (
         <div  ref={sortRef} className="sort">
