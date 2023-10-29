@@ -78,7 +78,7 @@ function PizzaBlock ({id, title, price, image, sizes, types}) {
                            />
                        </svg>
                        <span>Добавить</span>
-                       {addedCount > 0 && <i> 0 </i> }
+                       {addedCount > 0 && <i> {addedCount} </i> }
                    </button>
                </div>
            </div>
