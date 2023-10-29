@@ -2,6 +2,9 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addItem} from "../../redux/slices/cartSlice";
 
+const typesNames = ['тонкое', 'традиционное'];
+
+
 function PizzaBlock ({id, title, price, image, sizes, types}) {
     const dispatch = useDispatch();
     const [countPizza, setCountPizza] = useState(0);
@@ -13,14 +16,14 @@ function PizzaBlock ({id, title, price, image, sizes, types}) {
     //  const onAddPizza = () => {
     //     setCountPizza(countPizza + 1);
     // }
-    const typesNames = ['тонкое', 'традиционное'];
+
      const onClickAdd = () => {
          const item = {
              id,
              title,
              price,
              image,
-             type: activeType,
+             type: typesNames[activeSize],
              size: activeSize
          };
          dispatch(addItem(item));
