@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function PizzaBlock ({title, price, image, sizes, types}) {
+function PizzaBlock ({id, title, price, image, sizes, types}) {
 
     const [countPizza, setCountPizza] = useState(0);
     //state для выбора типа пиццы и ее размера
@@ -12,6 +12,16 @@ function PizzaBlock ({title, price, image, sizes, types}) {
         setCountPizza(countPizza + 1);
     }
     const typesNames = ['тонкое', 'традиционное'];
+     const onClickAdd = () => {
+         const item = {
+             id,
+             title,
+             price,
+             image,
+             type: activeType,
+             size: activeSize
+         }
+     }
 
     return (
        <div className="pizza-block-wrapper">
