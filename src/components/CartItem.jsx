@@ -1,4 +1,4 @@
-const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
+const CartItem = ({id, title, type,  price, count, imageUrl}) => {
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -7,7 +7,7 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
             <div className="cart__item-info">
                 <h3>{title}</h3>
                 <p>
-                    тонкое, 26 см.
+                    {type}, 26 см.
                 </p>
             </div>
             <div className="cart__item-count">
@@ -28,7 +28,7 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
                             fill="#EB5A1E"></path>
                     </svg>
                 </button>
-                <b>50</b>
+                <b>{count}</b>
                 <button
 
                     className="button button--outline button--circle cart__item-count-plus">
@@ -48,7 +48,7 @@ const CartItem = ({id, title, type, size, price, count, imageUrl}) => {
                 </button>
             </div>
             <div className="cart__item-price">
-                <b>200 ₽</b>
+                <b>{price * count} грн</b>
             </div>
             <div className="cart__item-remove">
                 <div  className="button button--outline button--circle">

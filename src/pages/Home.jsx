@@ -95,17 +95,22 @@ const Home = () => {
     }, [categoryId, sort.sortProperty, navigate, currentPage]);
 
 
-    const itemsPizzas = pizzas
+    const itemsPizzas = pizzas.map((item) => {
+        console.log('sdf', item);
+        return (
+            <PizzaBlock
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                price={item.price} i
+                image={item.imageUrl}
+                sizes={item.sizes}
+                types={item.types}
+            />
+        )
+    });
 
-        .map((item) =>
-        <PizzaBlock
-            key={item.id}
-            title={item.title}
-            price={item.price} i
-            image={item.imageUrl}
-            sizes={item.sizes}
-            types={item.types}
-            />);
+
 
     return (
         <div className="container">

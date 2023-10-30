@@ -7,19 +7,13 @@ const typesNames = ['тонкое', 'традиционное'];
 
 function PizzaBlock ({id, title, price, image, sizes, types}) {
     const dispatch = useDispatch();
-    // const [countPizza, setCountPizza] = useState(0);
-    //state для выбора типа пиццы и ее размера
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize] = useState(0);
 
-    const cartItem = useSelector(state => state.cart.items.find(object => object.id === id));
+    const cartItem = useSelector((state) => state.cart.items.find((object) => object.id === id));
+    console.log('init', id)
 
     const addedCount = cartItem ? cartItem.count : 0;
-
-    //увеличиваю 0 на 1 при нажатии на кнопку добавить
-    //  const onAddPizza = () => {
-    //     setCountPizza(countPizza + 1);
-    // }
 
      const onClickAdd = () => {
          const item = {
@@ -28,11 +22,11 @@ function PizzaBlock ({id, title, price, image, sizes, types}) {
              price,
              image,
              type: typesNames[activeSize],
-             size: activeSize,
+             size: sizes[activeSize],
              count: 0,
          };
          dispatch(addItem(item));
-     }
+     };
 
     return (
        <div className="pizza-block-wrapper">

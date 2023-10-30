@@ -9,15 +9,9 @@ const cartSlice = createSlice({
     name: ' cart',
     initialState,
     reducers: {
-        // addItem(state, action) {
-        //     state.items.push(action.payload);
-        //     state.totalPrice = state.items.reduce((amount, object) => {
-        //         return object.price + amount;
-        //     }, 0);
-        // },
         addItem(state, action) {
             const findItem = state.items.find((object) => object.id === action.payload.id)
-
+            console.log(action.payload);
             if (findItem) {
                 findItem.count ++;
             } else {
@@ -26,15 +20,19 @@ const cartSlice = createSlice({
                     count: 1,
                 });
             }
+
+
             state.totalPrice = state.items.reduce(
-                (amount, item) => item.price * item.count + amount,
-                0
-            );
+                (amount, item) => item.price * item.count + amount, 0);
         },
        removeItem(state, action) {
+           // Удаляем элемент из корзины по идентификатору
            state.items = state.items.filter(object => object.id !== action.payload);
+
+
         },
         clearItems(state, action) {
+            // Очищаем корзину
             state.items = [];
         }
     },
