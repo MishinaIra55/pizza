@@ -87,7 +87,7 @@ const Cart = () => {
             </span>
                         <span>
               {' '}
-                            Сумма заказа: <b> ₽</b>{' '}
+                            Сумма заказа: <b>грн</b>{' '}
             </span>
                     </div>
                     <div className="cart__bottom-buttons">
