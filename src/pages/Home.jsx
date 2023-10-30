@@ -96,7 +96,7 @@ const Home = () => {
 
 
     const itemsPizzas = pizzas.map((item) => {
-        console.log('sdf', item);
+
         return (
             <PizzaBlock
                 key={item.id}
