@@ -49,7 +49,7 @@ const Cart = () => {
                         </svg>
                         Корзина
                     </h2>
-                    <div  onClick={onClickClear} className="cart__clear">
+                    <div onClick={onClickClear} className="cart__clear">
                         <svg
                             width="20"
                             height="20"

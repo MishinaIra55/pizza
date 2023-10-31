@@ -11,12 +11,11 @@ import {setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterS
 import axios from "axios";
 import qs from "qs";
 
-import { useNavigate } from "react-router-dom";
-
+import {useNavigate} from "react-router-dom";
 
 
 const Home = () => {
-    const {categoryId, currentPage, sort } = useSelector((state) => state.filter);
+    const {categoryId, currentPage, sort} = useSelector((state) => state.filter);
     const dispatch = useDispatch();
 
 
@@ -33,7 +32,7 @@ const Home = () => {
 
     const onChangeCategory = (index) => {
         dispatch(setCategoryId(index))
-  };
+    };
 
     const onChangePage = number => {
         dispatch(setCurrentPage(number));
@@ -45,7 +44,7 @@ const Home = () => {
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
         const sortBy = sort.sortProperty.replace('-', '');//удалить минус из свойства если он будет
         const category = categoryId > 0 ? `category=${categoryId}` : '';
-        const search = searchValue  ? `&search=${searchValue}` : '';
+        const search = searchValue ? `&search=${searchValue}` : '';
 
 
         axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
@@ -57,7 +56,7 @@ const Home = () => {
 
     //если быд первый рендер то проверяем url параметры и сохраняем в редуксе
     useEffect(() => {
-        if(window.location.search) {
+        if (window.location.search) {
             const params = qs.parse(window.location.search.substring(1));
 
             const sort = menu.find((object) => object.sortProperty === params.sortProperty)
@@ -70,15 +69,15 @@ const Home = () => {
             )
             isSearch.current = true;
         }
-    },[]);
+    }, []);
 
     //если быд первый рендер то запрашиваем пиццы
     useEffect(() => {
         window.scrollTo(0, 0);//при первом рендере scroll вверх
-        if(!isSearch.current) {
+        if (!isSearch.current) {
             fetchPizzas();
         }
-        }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+    }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
     //ксли был первый рендер и изменили параметры
     useEffect(() => {
@@ -86,7 +85,7 @@ const Home = () => {
             const queryString = qs.stringify({
                 categoryId,
                 currentPage,
-                sortProperty:sort.sortProperty,
+                sortProperty: sort.sortProperty,
             });
 
             navigate(`?${queryString}`);
@@ -111,15 +110,14 @@ const Home = () => {
     });
 
 
-
     return (
         <div className="container">
             <div className="content__top">
                 <Categories
                     value={categoryId}
-                    onClickCategory={ onChangeCategory}
+                    onClickCategory={onChangeCategory}
                 />
-                <Sort />
+                <Sort/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
@@ -127,7 +125,7 @@ const Home = () => {
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
                     : itemsPizzas}
             </div>
-                <Pagination page={currentPage} onChangePage={onChangePage}/>
+            <Pagination page={currentPage} onChangePage={onChangePage}/>
         </div>
     )
 }
