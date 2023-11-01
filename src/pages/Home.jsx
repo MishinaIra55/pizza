@@ -25,8 +25,8 @@ const Home = () => {
 
     const {searchValue} = useContext(SearchContext);
 
-    const items = useSelector((state) => state.pizza.items);
-    const [isLoading, setIsLoading] = useState(true);
+    const {items, status} = useSelector((state) => state.pizza);
+
 
     const navigate = useNavigate();
 
@@ -40,7 +40,6 @@ const Home = () => {
     };
 
     const getPizzas = async () => {
-        setIsLoading(true);
 
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
         const sortBy = sort.sortProperty.replace('-', '');//удалить минус из свойства если он будет
@@ -48,7 +47,6 @@ const Home = () => {
         const search = searchValue ? `&search=${searchValue}` : '';
 
        try {
-
            dispatch(fetchPizzas({
                order,
                sortBy,
@@ -56,12 +54,8 @@ const Home = () => {
                search,
                currentPage
            }));
-           setIsLoading(false);
-
        } catch (error){
            console.log(error);
-       } finally {
-           setIsLoading(false);
        }
 
     };
@@ -130,7 +124,7 @@ const Home = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {isLoading
+                {status === 'loading'
                     ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
                     : itemsPizzas}
             </div>
