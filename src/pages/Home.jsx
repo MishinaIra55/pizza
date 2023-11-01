@@ -12,6 +12,7 @@ import axios from "axios";
 import qs from "qs";
 
 import {useNavigate} from "react-router-dom";
+import {setItems} from "../redux/slices/pizzaSlice";
 
 
 const Home = () => {
@@ -24,7 +25,7 @@ const Home = () => {
 
     const {searchValue} = useContext(SearchContext);
 
-    const [pizzas, setPizzas] = useState([]);
+    const items = useSelector((state) => state.pizza.items);
     const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Home = () => {
 
        try {
            const response = await  axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
-           setPizzas(response.data);
+           dispatch(setItems(response.data));
        } catch (error){
            console.log(error);
        } finally {
@@ -97,7 +98,7 @@ const Home = () => {
     }, [categoryId, sort.sortProperty, navigate, currentPage]);
 
 
-    const itemsPizzas = pizzas.map((item) => {
+    const itemsPizzas = items.map((item) => {
 
         return (
             <PizzaBlock
