@@ -49,11 +49,10 @@ const Home = () => {
        try {
            const response = await  axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
            setPizzas(response.data);
-           setIsLoading(false);
-
        } catch (error){
-           setIsLoading(false);
            console.log(error);
+       } finally {
+           setIsLoading(false);
        }
 
     };
