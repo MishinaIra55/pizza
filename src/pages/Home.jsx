@@ -15,6 +15,7 @@ import {useNavigate} from "react-router-dom";
 import {fetchPizzas} from "../redux/slices/pizzaSlice";
 
 
+
 const Home = () => {
     const {categoryId, currentPage, sort} = useSelector((state) => state.filter);
     const dispatch = useDispatch();
@@ -123,11 +124,18 @@ const Home = () => {
                 <Sort/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-                {status === 'loading'
-                    ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
-                    : itemsPizzas}
-            </div>
+            {status === 'rejected' ? (
+                <div className='content__error-info'>
+                    <h2>Oh, something happened, try again...</h2>
+                </div>
+            ) : (
+                <div className="content__items">
+                    {status === 'loading'
+                        ? [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
+                        : itemsPizzas}
+                </div>
+            )}
+
             <Pagination page={currentPage} onChangePage={onChangePage}/>
         </div>
     )
