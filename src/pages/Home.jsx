@@ -8,11 +8,11 @@ import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
 import {setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
-import axios from "axios";
+
 import qs from "qs";
 
 import {useNavigate} from "react-router-dom";
-import {setItems} from "../redux/slices/pizzaSlice";
+import {fetchPizzas} from "../redux/slices/pizzaSlice";
 
 
 const Home = () => {
@@ -39,7 +39,7 @@ const Home = () => {
         dispatch(setCurrentPage(number));
     };
 
-    const fetchPizzas = async () => {
+    const getPizzas = async () => {
         setIsLoading(true);
 
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
@@ -48,8 +48,16 @@ const Home = () => {
         const search = searchValue ? `&search=${searchValue}` : '';
 
        try {
-           const response = await  axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
-           dispatch(setItems(response.data));
+
+           dispatch(fetchPizzas({
+               order,
+               sortBy,
+               category,
+               search,
+               currentPage
+           }));
+           setIsLoading(false);
+
        } catch (error){
            console.log(error);
        } finally {
@@ -77,11 +85,8 @@ const Home = () => {
 
     //если быд первый рендер то запрашиваем пиццы
     useEffect(() => {
-        window.scrollTo(0, 0);//при первом рендере scroll вверх
-        if (!isSearch.current) {
-            fetchPizzas();
-        }
-    }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+         getPizzas();
+        }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
     //ксли был первый рендер и изменили параметры
     useEffect(() => {
