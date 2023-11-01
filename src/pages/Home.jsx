@@ -38,7 +38,7 @@ const Home = () => {
         dispatch(setCurrentPage(number));
     };
 
-    const fetchPizzas = () => {
+    const fetchPizzas = async () => {
         setIsLoading(true);
 
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
@@ -47,7 +47,7 @@ const Home = () => {
         const search = searchValue ? `&search=${searchValue}` : '';
 
 
-        axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
+       await  axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
             .then((response) => {
                 setPizzas(response.data);
                 setIsLoading(false);
