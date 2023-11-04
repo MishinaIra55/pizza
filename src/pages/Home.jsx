@@ -5,7 +5,7 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 
 import {useContext, useEffect, useRef, useState} from "react";
 import Pagination from "../components/Pagination";
-import {SearchContext} from "../App";
+
 import {useDispatch, useSelector} from "react-redux";
 import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
 
@@ -18,14 +18,14 @@ import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice";
 
 
 const Home = () => {
-    const {categoryId, currentPage, sort} = useSelector(FilterSelector);
+    const {categoryId, currentPage, sort, searchValue} = useSelector(FilterSelector);
     const dispatch = useDispatch();
 
 
     const isMounted = useRef(false);
     const isSearch = useRef(false);
 
-    const {searchValue} = useContext(SearchContext);
+
 
     const {items, status} = useSelector(PizzaSelector);
 
