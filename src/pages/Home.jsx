@@ -7,17 +7,18 @@ import {useContext, useEffect, useRef, useState} from "react";
 import Pagination from "../components/Pagination";
 import {SearchContext} from "../App";
 import {useDispatch, useSelector} from "react-redux";
-import {setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
+import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
 
 import qs from "qs";
 
 import {useNavigate} from "react-router-dom";
-import {fetchPizzas} from "../redux/slices/pizzaSlice";
+import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice";
+
 
 
 
 const Home = () => {
-    const {categoryId, currentPage, sort} = useSelector((state) => state.filter);
+    const {categoryId, currentPage, sort} = useSelector(FilterSelector);
     const dispatch = useDispatch();
 
 
@@ -26,7 +27,7 @@ const Home = () => {
 
     const {searchValue} = useContext(SearchContext);
 
-    const {items, status} = useSelector((state) => state.pizza);
+    const {items, status} = useSelector(PizzaSelector);
 
 
     const navigate = useNavigate();

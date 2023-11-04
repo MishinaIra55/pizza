@@ -28,7 +28,10 @@ export const filterSlice = createSlice({
             state.categoryId = Number(action.payload.categoryId);
         }
     },
-})
+});
+
+export const FilterSelector = state => state.filter;
+export const SortSelector = state => state.filter.sort;
 
 export const { setCategoryId, setSort, setCurrentPage, setFilters } = filterSlice.actions;
 
