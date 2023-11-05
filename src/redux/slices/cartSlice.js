@@ -23,8 +23,6 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce(
                 (amount, item) => item.price * item.count + amount, 0);
         },
-
-
         minusItem(state, action) {
             const findItem = state.items.find((object) => object.id === action.payload)
 
@@ -33,15 +31,11 @@ const cartSlice = createSlice({
             }
             state.totalPrice = state.items.reduce(
                 (amount, item) => item.price * item.count + amount, 0);
-
-        },
-
+            },
         removeItem(state, action) {
             // Удаляем элемент из корзины по идентификатору
             state.items = state.items.filter(object => object.id !== action.payload);
-
-
-        },
+            },
         clearItems(state, action) {
             // Очищаем корзину
             state.items = [];
@@ -51,9 +45,6 @@ const cartSlice = createSlice({
 });
 
 export const CartSelector = state => state.cart;
-
-
-
 export const CartItemByIdSelector = (id) => state => state.cart.items.find((object) => object.id === id);
 
 export const {addItem, removeItem, clearItems, minusItem} = cartSlice.actions;

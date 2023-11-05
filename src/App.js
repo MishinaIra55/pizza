@@ -3,16 +3,10 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Cart from './pages/Cart';
-
 import {Route, Routes} from "react-router-dom";
 
 
-
-
-
 function App() {
-
-
     return (
         <div className="wrapper">
             <Header/>
@@ -25,6 +19,6 @@ function App() {
                </div>
         </div>
     );
-}
+};
 
 export default App;

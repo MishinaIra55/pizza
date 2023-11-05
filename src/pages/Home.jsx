@@ -21,15 +21,10 @@ const Home = () => {
     const {categoryId, currentPage, sort, searchValue} = useSelector(FilterSelector);
     const dispatch = useDispatch();
 
-
     const isMounted = useRef(false);
     const isSearch = useRef(false);
 
-
-
     const {items, status} = useSelector(PizzaSelector);
-
-
     const navigate = useNavigate();
 
 
@@ -42,7 +37,6 @@ const Home = () => {
     };
 
     const getPizzas = async () => {
-
         const order = sort.sortProperty.includes('-') ? 'asc' : 'desc';//если есть минус делаем сортировку по возврастанию иначе по убвапнию
         const sortBy = sort.sortProperty.replace('-', '');//удалить минус из свойства если он будет
         const category = categoryId > 0 ? `category=${categoryId}` : '';
