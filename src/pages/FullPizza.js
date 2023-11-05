@@ -21,9 +21,9 @@ export const FullPizza = () => {
 
     return (
         <div className='container'>
-            <img src=''/>
-            <h2> 33333</h2>
-            <p>Інформація про піццу</p>
+            <img src={pizza.imageUrl}/>
+            <h2> {pizza.title}</h2>
+            <p>{pizza.price} грн</p>
         </div>
     )
 };
