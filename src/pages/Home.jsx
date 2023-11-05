@@ -11,7 +11,7 @@ import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redu
 
 import qs from "qs";
 
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice";
 
 
@@ -94,17 +94,18 @@ const Home = () => {
 
 
     const itemsPizzas = items.map((item) => {
-
         return (
-            <PizzaBlock
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                price={item.price} i
-                image={item.imageUrl}
-                sizes={item.sizes}
-                types={item.types}
-            />
+            <Link to={`/pizza/${item.id}`}  key={item.id}>
+                <PizzaBlock
+
+                    id={item.id}
+                    title={item.title}
+                    price={item.price} i
+                    image={item.imageUrl}
+                    sizes={item.sizes}
+                    types={item.types}
+                />
+            </Link>
         )
     });
 
