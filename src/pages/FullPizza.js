@@ -18,6 +18,9 @@ export const FullPizza = () => {
         fetchPizza();
     }, []);
 
+    if (!pizza) {
+        return 'loading pizzas....'
+    }
 
     return (
         <div className='container'>
