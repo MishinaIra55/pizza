@@ -4,7 +4,13 @@ import axios from "axios";
 
 export const FullPizza = () => {
     const { id } = useParams();
-    const [pizza, setPizza] = useState();
+    const [pizza, setPizza] = useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+
+}>();
+
     const navigate = useNavigate();
 
     useEffect(() => {
