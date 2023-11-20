@@ -7,7 +7,7 @@ export const FullPizza = () => {
     const [pizza, setPizza] = useState<{
     imageUrl: string;
     title: string;
-    price: number;
+    price: number ;
 
 }>();
 
