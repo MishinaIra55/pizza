@@ -3,7 +3,7 @@ import Sort, {menu} from "../components/Sort";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 
-import {useContext, useEffect, useRef, useState} from "react";
+import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination";
 
 import {useDispatch, useSelector} from "react-redux";
