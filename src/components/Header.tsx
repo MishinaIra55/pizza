@@ -8,7 +8,7 @@ function Header() {
     const {items, totalPrice} = useSelector(CartSelector);
     const location = useLocation();
 
-    const totalCount = items.reduce((amount, item) => amount + item.count, 0);
+    const totalCount = items.reduce((amount: number, item: any) => amount + item.count, 0);
     return (
         <div className="header">
             <div className="container">

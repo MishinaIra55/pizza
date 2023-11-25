@@ -1,5 +1,5 @@
-import Categories from "../components/Categories";
-import Sort, {menu} from "../components/Sort";
+import Categories from "../components/Categories.tsx";
+import Sort, {menu} from "../components/Sort.tsx";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 
