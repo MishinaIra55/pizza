@@ -26,7 +26,7 @@ function Sort () {
     const [openPopup, setOpenPopup] = useState(false);
 
 
-    const onClickMenuItem = (index) => {
+    const onClickMenuItem = (index: MenuItem) => {
         // onClickSort(index);
         setOpenPopup(false);
         dispatch(setSort(index));
