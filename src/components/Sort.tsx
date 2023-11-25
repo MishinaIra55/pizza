@@ -2,10 +2,13 @@ import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setSort, SortSelector} from "../redux/slices/filterSlice";
 
+type MenuItem = {
+    name: string;
+    sortProperty: string;
+};
 
 
-
-export const menu = [
+export const menu: MenuItem [] = [
     {name: 'популярности ASC', sortProperty: 'rating'},
     {name: 'популярности DESC', sortProperty: '-rating'},
     {name: 'цене  ASC', sortProperty: 'price'},
