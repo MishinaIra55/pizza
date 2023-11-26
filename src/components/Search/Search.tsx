@@ -1,12 +1,12 @@
 import styles from './Search.module.scss';
 import { ReactComponent as MySVGIcon } from './MySVG.svg';
-import {  useRef, useState} from "react";
+import React, {  useRef, useState} from "react";
 
 import debounce from 'lodash.debounce';
 import {useDispatch} from "react-redux";
 import {setSearchValue} from "../../redux/slices/filterSlice";
 
-const Search = () => {
+const Search: React.FC = () => {
     const [value, setValue] = useState(''); //локально создала state + контролируемый input
     const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
@@ -17,7 +17,7 @@ const Search = () => {
         inputRef.current ?.focus();
     };
 
-    const updateSearchValue = debounce((str) => {
+    const updateSearchValue = debounce((str: string) => {
        dispatch(setSearchValue(str))
     }, 1000);
 
