@@ -1,6 +1,7 @@
 import styles from './NotFoundBlock.module.scss';
+import React from "react";
 
-const NotFoundBlock = () => {
+const NotFoundBlock: React.FC = () => {
     return (
         <>
             <h1 className={styles.found}> Not found.Try again.</h1>
