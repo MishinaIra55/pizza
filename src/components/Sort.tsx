@@ -21,7 +21,7 @@ function Sort () {
     const dispatch = useDispatch();
 
     const sort = useSelector(SortSelector);
-    const sortRef = useRef();
+    const sortRef = useRef<HTMLDivElement>(null );
 
     const [openPopup, setOpenPopup] = useState(false);
 
