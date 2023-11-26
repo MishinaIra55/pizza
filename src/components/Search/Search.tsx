@@ -14,7 +14,7 @@ const Search = () => {
     const onClickClear = () => {
         dispatch(setSearchValue(''));
         setValue('');
-        inputRef.current.focus();
+        inputRef.current ?.focus();
     };
 
     const updateSearchValue = debounce((str) => {
