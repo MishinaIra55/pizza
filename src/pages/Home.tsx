@@ -28,7 +28,7 @@ const Home = () => {
     const navigate = useNavigate();
 
 
-    const onChangeCategory = (index) => {
+    const onChangeCategory = (index: number) => {
         dispatch(setCategoryId(index))
     };
 
