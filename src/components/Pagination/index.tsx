@@ -4,10 +4,10 @@ import React from "react";
 
 type PaginationProps = {
     page: number,
-    onChangePage: any
+    onChangePage: (page: number) => void
 }
 
-const Pagination: React.FC<PaginationProps> = ({page, onChangePage}) => {
+const Pagination: React.FC<PaginationProps > = ({page, onChangePage}) => {
     return (
         <ReactPaginate
             className={styles.root}

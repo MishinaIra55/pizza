@@ -32,7 +32,7 @@ const Home = () => {
         dispatch(setCategoryId(index))
     };
 
-    const onChangePage = number => {
+    const onChangePage = (number: number) => {
         dispatch(setCurrentPage(number));
     };
 

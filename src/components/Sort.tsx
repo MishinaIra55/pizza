@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setSort, SortSelector} from "../redux/slices/filterSlice";
 
@@ -6,6 +6,7 @@ type MenuItem = {
     name: string;
     sortProperty: string;
 };
+
 
 
 export const menu: MenuItem [] = [
@@ -34,17 +35,17 @@ function Sort () {
 
     useEffect(() => {
 
-        const handleClickOutside = (event) => {
-            if (event.path && !event.path.includes(sortRef.current)) {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as Node;
+            if (sortRef.current && !sortRef.current.contains(target)) {
                 setOpenPopup(false);
-
             }
-        }
+        };
         document.body.addEventListener("click", handleClickOutside);
         return () =>
 
             document.body.removeEventListener('click', handleClickOutside)
-    }, []);
+    }, [sortRef]);
 
 
     return (
