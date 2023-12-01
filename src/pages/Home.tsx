@@ -7,12 +7,12 @@ import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination/index.tsx";
 
 import {useDispatch, useSelector} from "react-redux";
-import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
+import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice.tsx";
 
 import qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
-import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice";
+import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice.tsx";
 
 
 

@@ -4,7 +4,7 @@ import React, {  useRef, useState} from "react";
 
 import debounce from 'lodash.debounce';
 import {useDispatch} from "react-redux";
-import {setSearchValue} from "../../redux/slices/filterSlice";
+import {setSearchValue} from "../../redux/slices/filterSlice.tsx";
 
 const Search: React.FC = () => {
     const [value, setValue] = useState(''); //локально создала state + контролируемый input
