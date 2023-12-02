@@ -4,11 +4,11 @@ import {RootState} from "../store";
 import {CartItem} from "./cartSlice";
 
 
-type FetchPizzasArgs = Record<string, string>;//сокращенная запись обьект со строчками
+//сокращенная запись обьект со строчками
 
-export const fetchPizzas = createAsyncThunk(
+export const fetchPizzas = createAsyncThunk<CartItem[], Record<string, string>>(
     'pizza/fetchPizzasStatus',
-    async (params: FetchPizzasArgs) => {
+    async (params) => {
     const {
         order,
         sortBy,
@@ -18,7 +18,7 @@ export const fetchPizzas = createAsyncThunk(
     } = params;
 
     const response = await  axios.get(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
-    return response.data as CartItem[];
+    return response.data;
 });
 
 type PizzaItem = {
