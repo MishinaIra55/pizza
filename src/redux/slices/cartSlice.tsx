@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
 export type CartItem = {
@@ -26,7 +26,7 @@ const cartSlice = createSlice({
     name: ' cart',
     initialState,
     reducers: {
-        addItem(state, action) {
+        addItem(state, action: PayloadAction<CartItem>) {
             const findItem = state.items.find((object) => object.id === action.payload.id)
 
             if (findItem) {
@@ -40,7 +40,7 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce(
                 (amount, item) => item.price * item.count + amount, 0);
         },
-        minusItem(state, action) {
+        minusItem(state, action: PayloadAction<string>) {
             const findItem = state.items.find((object) => object.id === action.payload)
 
             if (findItem) {
@@ -49,11 +49,11 @@ const cartSlice = createSlice({
             state.totalPrice = state.items.reduce(
                 (amount, item) => item.price * item.count + amount, 0);
             },
-        removeItem(state, action) {
+        removeItem(state, action: PayloadAction<string>) {
             // Удаляем элемент из корзины по идентификатору
             state.items = state.items.filter(object => object.id !== action.payload);
             },
-        clearItems(state, action) {
+        clearItems(state) {
             // Очищаем корзину
             state.items = [];
             state.totalPrice = 0;

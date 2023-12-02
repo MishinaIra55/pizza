@@ -1,7 +1,7 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {RootState} from "../store";
-import CartItem from "../../components/CartItem";
+
 
 export const fetchPizzas = createAsyncThunk('pizza/fetchPizzasStatus', async (params) => {
     const {
@@ -41,7 +41,7 @@ const pizzaSlice = createSlice({
     name: 'pizza',
     initialState,
         reducers: {
-            setItems(state, action: PayloadAction<CartItem>) {
+            setItems(state, action) {
                 state.items = action.payload;
             }
         },
