@@ -1,12 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
-type CartItem = {
+export type CartItem = {
     id: string;
     title: string;
     price: number;
     imageUrl: string;
-    type: number;
+    type: string;
     size: number;
 };
 
