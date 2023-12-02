@@ -4,7 +4,7 @@ import {RootState} from "../store";
 
 type Sort = {
     name: string,
-    sortProperty: 'rating' | 'title' | 'price';
+    sortProperty: 'rating' | 'title' | 'price' | '-rating' | '-title' | '-price';
 };
 
 
