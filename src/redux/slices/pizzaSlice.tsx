@@ -1,25 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {RootState} from "../store";
-import {CartItem} from "./cartSlice";
 
-
-//сокращенная запись обьект со строчками
-
-export const fetchPizzas = createAsyncThunk<CartItem[], Record<string, string>>(
-    'pizza/fetchPizzasStatus',
-    async (params) => {
-    const {
-        order,
-        sortBy,
-        category,
-        search,
-        currentPage
-    } = params;
-
-    const response = await  axios.get<CartItem[]>(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
-    return response.data;
-});
 
 type PizzaItem = {
     id: string;
@@ -30,9 +12,28 @@ type PizzaItem = {
     size: number;
 }
 
+//сокращенная запись обьект со строчками
+
+export const fetchPizzas = createAsyncThunk<PizzaItem[], Record<string, string>>(
+    'pizza/fetchPizzasStatus',
+    async (params) => {
+    const {
+        order,
+        sortBy,
+        category,
+        search,
+        currentPage
+    } = params;
+
+    const response = await  axios.get<PizzaItem[]>(`https://651e831944a3a8aa47687f71.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`);
+    return response.data;
+});
+
+
+
 interface PizzaSliceState {
     items: PizzaItem[],
-    status: 'loading' | 'success' | 'error';
+    status: 'loading' | 'fulfilled' | 'rejected';
 };
 
 
@@ -53,14 +54,12 @@ const pizzaSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchPizzas.pending, (state, action) => {
             state.status = 'pending';
-                state.items = [];
-
+            state.items = [];
         });
 
         builder.addCase(fetchPizzas.fulfilled, (state, action) => {
-            state.items = action.payload;
             state.status = 'fulfilled'
-
+            state.items = action.payload;
         });
 
         builder.addCase(fetchPizzas.rejected, (state, action) => {
