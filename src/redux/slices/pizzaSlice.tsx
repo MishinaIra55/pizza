@@ -12,7 +12,7 @@ type PizzaItem = {
     size: number;
 }
 
-enum Status {
+export enum Status {
     LOADING = 'loading',
     FULFILLED = 'fulfilled',
     REJECTED = 'rejected'
