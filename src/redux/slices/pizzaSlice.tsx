@@ -18,10 +18,17 @@ export enum Status {
     REJECTED = 'rejected'
 
 }
+export type SearchPizzaParams = {
+    order: string,
+    sortBy: string,
+    category: string,
+    search: string,
+    currentPage: string
+};
 
 //сокращенная запись обьект со строчками
 
-export const fetchPizzas = createAsyncThunk<PizzaItem[], Record<string, string>>(
+export const fetchPizzas = createAsyncThunk<PizzaItem[], SearchPizzaParams>(
     'pizza/fetchPizzasStatus',
     async (params) => {
     const {

@@ -8,7 +8,7 @@ type Sort = {
 };
 
 
-interface FilterSliceState {
+export interface FilterSliceState {
     searchValue: string,
     categoryId: number,
     currentPage: number,

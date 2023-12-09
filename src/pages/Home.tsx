@@ -7,13 +7,14 @@ import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination/index.tsx";
 
 import {useSelector} from "react-redux";
-import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice.tsx";
+import FilterSlice, {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice.tsx";
 
 import qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
 import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice.tsx";
 import {useAppDispatch} from "../redux/store.tsx";
+import FilterSliceState from '../redux/slices/filterSlice'
 
 
 
@@ -60,9 +61,9 @@ const Home = () => {
     //если быд первый рендер то проверяем url параметры и сохраняем в редуксе
     useEffect(() => {
         if (window.location.search) {
-            const params = qs.parse(window.location.search.substring(1));
+            const params: FilterSliceState = qs.parse(window.location.search.substring(1));
 
-            const sort = menu.find((object) => object.sortProperty === params.sortProperty)
+            const sort = menu.find((object) => object.sortProperty === params.sortBy)
 
             dispatch(
                 setFilters({
