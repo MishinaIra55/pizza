@@ -6,20 +6,21 @@ import PizzaBlock from "../components/PizzaBlock/PizzaBlock.tsx";
 import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination/index.tsx";
 
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice.tsx";
 
 import qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
 import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice.tsx";
+import {useAppDispatch} from "../redux/store.tsx";
 
 
 
 
 const Home = () => {
     const {categoryId, currentPage, sort, searchValue} = useSelector(FilterSelector);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const isMounted = useRef(false);
     const isSearch = useRef(false);
@@ -48,7 +49,7 @@ const Home = () => {
                sortBy,
                category,
                search,
-               currentPage
+               currentPage: String(currentPage),
            }));
        } catch (error){
            console.log(error);
@@ -76,7 +77,7 @@ const Home = () => {
     //если быд первый рендер то запрашиваем пиццы
     useEffect(() => {
          getPizzas();
-        }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+        }, []);
 
     //ксли был первый рендер и изменили параметры
     useEffect(() => {
