@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem, CartItem, CartItemByIdSelector} from "../../redux/slices/cartSlice.tsx";
+import {Link} from "react-router-dom";
 
 const typesNames = ['тонкое', 'традиционное'];
 
@@ -39,12 +40,14 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({id, title, price, image, 
     return (
        <div className="pizza-block-wrapper">
            <div className="pizza-block">
+               <Link to={`/pizza/${id}`}  key={id}>
                <img
                    className="pizza-block__image"
                    src={image}
                    alt="Pizza"
                />
                <h4 className="pizza-block__title">{title}</h4>
+               </Link>
                <div className="pizza-block__selector">
                    <ul>
                        {types.map((typeId) => (

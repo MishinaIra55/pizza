@@ -96,7 +96,7 @@ const Home = () => {
 
     const itemsPizzas = items.map((item) => {
         return (
-            <Link to={`/pizza/${item.id}`}  key={item.id}>
+
                 <PizzaBlock
 
                     id={item.id}
@@ -106,7 +106,7 @@ const Home = () => {
                     sizes={item.sizes}
                     types={item.types}
                 />
-            </Link>
+
         )
     });
 
