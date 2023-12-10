@@ -12,7 +12,7 @@ import FilterSlice, {FilterSelector, setCategoryId, setCurrentPage, setFilters} 
 import qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
-import {fetchPizzas, PizzaSelector} from "../redux/slices/pizzaSlice.tsx";
+import {fetchPizzas, PizzaSelector, SearchPizzaParams} from "../redux/slices/pizzaSlice.tsx";
 import {useAppDispatch} from "../redux/store.tsx";
 import FilterSliceState from '../redux/slices/filterSlice'
 
@@ -59,40 +59,39 @@ const Home = () => {
     };
 
     //если быд первый рендер то проверяем url параметры и сохраняем в редуксе
-    useEffect(() => {
-        if (window.location.search) {
-            const params: FilterSliceState = qs.parse(window.location.search.substring(1));
-
-            const sort = menu.find((object) => object.sortProperty === params.sortBy)
-
-            dispatch(
-                setFilters({
-                    ...params,
-                    sort,
-                })
-            )
-            isSearch.current = true;
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (window.location.search) {
+    //         const params: FilterSliceState = qs.parse(window.location.search.substring(1)) as unknown) as SearchPizzaParams;
+    //
+    //         const sort = menu.find((object) => object.sortProperty === params.sortBy);
+    //         if (sort) {
+    //             params.sort = sort;
+    //         }
+    //
+    //         dispatch(setFilters(params)
+    //         )
+    //         isSearch.current = true;
+    //     }
+    // }, []);
 
     //если быд первый рендер то запрашиваем пиццы
     useEffect(() => {
          getPizzas();
-        }, []);
+        }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
     //ксли был первый рендер и изменили параметры
-    useEffect(() => {
-        if (isMounted.current) {
-            const queryString = qs.stringify({
-                categoryId,
-                currentPage,
-                sortProperty: sort.sortProperty,
-            });
-
-            navigate(`?${queryString}`);
-        }
-        isMounted.current = true;
-    }, [categoryId, sort.sortProperty, navigate, currentPage]);
+    // useEffect(() => {
+    //     if (isMounted.current) {
+    //         const queryString = qs.stringify({
+    //             categoryId,
+    //             currentPage,
+    //             sortProperty: sort.sortProperty,
+    //         });
+    //
+    //         navigate(`?${queryString}`);
+    //     }
+    //     isMounted.current = true;
+    // }, []);
 
 
     const itemsPizzas = items.map((item) => {

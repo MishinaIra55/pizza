@@ -2,10 +2,19 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {RootState} from "../store";
 
 
-type Sort = {
+export type Sort = {
     name: string,
-    sortProperty: 'rating' | 'title' | 'price' | '-rating' | '-title' | '-price';
+    sortProperty: SortPropertyEnum;
 };
+
+export enum SortPropertyEnum {
+    RATING_DESC = 'rating',
+    RATING_ASC = '-rating',
+    TITLE_DESC = 'title',
+    TITLE_ASC = '-title',
+    PRICE_DESC = 'price',
+    PRICE_ASC = '-price',
+}
 
 
 export interface FilterSliceState {
@@ -22,7 +31,7 @@ const initialState: FilterSliceState = {
     currentPage: 1,
     sort: {
         name: 'популярности ',
-        sortProperty: 'rating',
+        sortProperty: SortPropertyEnum.PRICE_DESC,
     }
 }
 
@@ -43,11 +52,22 @@ export const filterSlice = createSlice({
             state.currentPage = action.payload;
         },
         setFilters(state, action: PayloadAction<FilterSliceState>) {
-            state.currentPage = Number(action.payload.currentPage);
-            state.sort = action.payload.sort;
-            state.categoryId = Number(action.payload.categoryId);
+            if (Object.keys(action.payload).length) {
+                state.currentPage = Number(action.payload.currentPage);
+                state.categoryId = Number(action.payload.categoryId);
+                state.sort = action.payload.sort;
+            } else {
+                state.currentPage = 1;
+                state.categoryId = 0;
+                state.sort = {
+                    name: 'популярности',
+                    sortProperty: SortPropertyEnum.RATING_DESC,
+                };
+            }
+        },
+
+
         }
-    },
 });
 
 export const FilterSelector = (state: RootState) => state.filter;
