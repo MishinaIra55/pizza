@@ -1,7 +1,7 @@
-import Categories from "../components/Categories.tsx";
 import Sort, {menu} from "../components/Sort.tsx";
 import Skeleton from "../components/PizzaBlock/Skeleton.tsx";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock.tsx";
+import Categories from "../components/Categories.tsx";
 
 import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination/index.tsx";
