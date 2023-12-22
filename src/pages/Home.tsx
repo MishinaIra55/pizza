@@ -15,6 +15,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {fetchPizzas, PizzaSelector, SearchPizzaParams} from "../redux/slices/pizzaSlice.tsx";
 import {useAppDispatch} from "../redux/store.tsx";
 import FilterSliceState from '../redux/slices/filterSlice'
+import React from "react";
 
 
 
@@ -30,9 +31,9 @@ const Home = () => {
     const navigate = useNavigate();
 
 
-    const onChangeCategory = (index: number) => {
+    const onChangeCategory = React.useCallback((index: number) => {
         dispatch(setCategoryId(index))
-    };
+    }, []);
 
     const onChangePage = (number: number) => {
         dispatch(setCurrentPage(number));
