@@ -1,8 +1,8 @@
 import logoSvg from '../assets/img/pizza-logo.svg'
 import {Link, useLocation} from "react-router-dom";
-import Search from "./Search/Search.tsx";
+import Search from "./Search/index";
 import {useSelector} from "react-redux";
-import {CartSelector} from "../redux/slices/cartSlice.tsx";
+import {CartSelector} from "../redux/slices/cartSlice";
 
 function Header() {
     const {items, totalPrice} = useSelector(CartSelector);

@@ -10,6 +10,8 @@ export type CartItem = {
     size: number;
 };
 
+
+
 //interface типизирует только обыект
 interface CartSliceState {
     totalPrice: number;

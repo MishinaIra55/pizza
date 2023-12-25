@@ -1,21 +1,21 @@
-import Sort, {menu} from "../components/Sort.tsx";
-import Skeleton from "../components/PizzaBlock/Skeleton.tsx";
-import PizzaBlock from "../components/PizzaBlock/PizzaBlock.tsx";
-import Categories from "../components/Categories.tsx";
+import Sort, {menu} from "../components/Sort";
+import Skeleton from "../components/PizzaBlock/Skeleton";
+import PizzaBlock from "../components/PizzaBlock/index";
+import Categories from "../components/Categories";
 
 import { useEffect, useRef } from "react";
-import Pagination from "../components/Pagination/index.tsx";
+import Pagination from "../components/Pagination/index";
 
 import {useSelector} from "react-redux";
-import FilterSlice, {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice.tsx";
+import FilterSlice, {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
 
-import qs from "qs";
+import * as qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
-import {fetchPizzas, PizzaSelector, SearchPizzaParams} from "../redux/slices/pizzaSlice.tsx";
-import {useAppDispatch} from "../redux/store.tsx";
+import {fetchPizzas, PizzaSelector, SearchPizzaParams} from "../redux/slices/pizzaSlice";
+import {useAppDispatch} from "../redux/store";
 import FilterSliceState from '../redux/slices/filterSlice'
-import React from "react";
+import * as React from 'react';
 
 
 
