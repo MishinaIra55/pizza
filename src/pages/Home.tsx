@@ -48,7 +48,10 @@ const Home = () => {
        try {
            dispatch(fetchPizzas({
                order,
-               sortBy,
+               sort: {
+                   sortProperty: sortBy,
+                   sortDirection: order === 'asc' ? 'asc' : 'desc',
+               },
                category,
                search,
                currentPage: String(currentPage),
@@ -102,7 +105,7 @@ const Home = () => {
                     key={item.id}
                     id={item.id}
                     title={item.title}
-                    price={item.price} i
+                    price={item.price}
                     image={item.imageUrl}
                     sizes={item.sizes}
                     types={item.types}

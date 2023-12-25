@@ -8,6 +8,7 @@ export type CartItem = {
     image: string;
     type: string;
     size: number;
+    count: number;
 };
 
 
@@ -64,7 +65,7 @@ const cartSlice = createSlice({
 });
 
 export const CartSelector = (state: RootState) => state.cart;
-export const CartItemByIdSelector = (id) => (state: RootState) => state.cart.items.find((object) => object.id === id);
+export const CartItemByIdSelector = (id: string) => (state: RootState) => state.cart.items.find((object) => object.id === id);
 
 export const {addItem, removeItem, clearItems, minusItem} = cartSlice.actions;
 

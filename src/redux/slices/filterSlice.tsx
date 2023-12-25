@@ -39,10 +39,10 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        setSearchValue(state, action: PayloadAction<number>) {
+        setSearchValue(state, action: PayloadAction<string>) {
             state.searchValue = action.payload;
         },
-        setCategoryId(state,action: PayloadAction<string>) {
+        setCategoryId(state,action: PayloadAction<number>) {
             state.categoryId = action.payload;
         },
         setSort(state,action: PayloadAction<Sort>) {

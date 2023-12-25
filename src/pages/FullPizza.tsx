@@ -27,7 +27,7 @@ const FullPizza: React.FC = () => {
     }, []);
 
     if (!pizza) {
-        return 'loading pizzas....'
+        return <React.Fragment>loading pizzas....</React.Fragment>;
     }
 
     return (
