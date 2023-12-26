@@ -1,8 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getCartFromLocalStorage} from "../../../utils/getCartFromLocalStorage";
-import {calcTotalPrice} from "../../../utils/calcTotalPrice";
+
 
 import {CartItem, CartSliceState} from "./types";
+import {getCartFromLocalStorage} from "../../utils/getCartFromLocalStorage";
+import {calcTotalPrice} from "../../utils/calcTotalPrice";
 
 
 

@@ -1,5 +1,6 @@
 import {calcTotalPrice} from "./calcTotalPrice";
-import {CartItem} from "../redux/slices/cart/types";
+import {CartItem} from "../redux/cart/types";
+
 
 export const getCartFromLocalStorage = () => {
     const data = localStorage.getItem('cart');

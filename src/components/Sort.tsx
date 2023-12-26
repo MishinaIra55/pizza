@@ -1,8 +1,8 @@
 import  {useEffect, useRef, useState} from "react";
 import * as React from 'react';
 import {useDispatch} from "react-redux";
-import {Sort, SortPropertyEnum} from "../redux/slices/filter/types";
-import {setSort} from "../redux/slices/filter/slice";
+import {Sort, SortPropertyEnum} from "../redux/filter/types";
+import {setSort} from "../redux/filter/slice";
 
 type MenuItem = {
     name: string;

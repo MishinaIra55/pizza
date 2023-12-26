@@ -3,14 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import CartItem from "../components/CartItem";
 
 import CartEmpty from "../components/CartEmpty";
-import {CartSelector} from "../redux/slices/cart/selectors";
-import {clearItems} from "../redux/slices/cart/slice";
+import {CartSelector} from "../redux/cart/selectors";
+import {clearItems} from "../redux/cart/slice";
+import { JSX } from "react/jsx-runtime";
+
 
 const Cart = () => {
     const dispatch = useDispatch();
     const {totalPrice, items} = useSelector(CartSelector);
 
-    const totalCount = items.reduce((amount, item) => amount + item.count, 0);
+    const totalCount = items.reduce((amount: any, item: { count: any; }) => amount + item.count, 0);
 
 
     const onClickClear = () => {
@@ -20,7 +22,7 @@ const Cart = () => {
     };
 
     if (!totalCount) {
-        return <CartEmpty />
+        return <CartEmpty/>
     }
 
     return (
@@ -93,7 +95,7 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className="content__items">
-                    {items.map(item => <CartItem key={item.id}
+                    {items.map((item: JSX.IntrinsicAttributes & { id: string; title: string; type: string; price: number; count: number; image: string; size: number; }) => <CartItem key={item.id}
                                                  {...item} />)}
                 </div>
                 <div className="cart__bottom">

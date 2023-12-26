@@ -14,10 +14,11 @@ import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../redux/store";
 
 import * as React from 'react';
-import { FilterSelector } from "../redux/slices/filter/selectors";
-import { setCategoryId, setCurrentPage } from "../redux/slices/filter/slice";
-import { PizzaSelector } from "../redux/slices/pizza/selector";
-import { fetchPizzas } from "../redux/slices/pizza/slice";
+import { FilterSelector } from "../redux/filter/selectors";
+import { setCategoryId, setCurrentPage } from "../redux/filter/slice";
+import { PizzaSelector } from "../redux/pizza/selector";
+import { fetchPizzas } from "../redux/pizza/asyncActions";
+
 
 
 
