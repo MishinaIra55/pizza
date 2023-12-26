@@ -6,7 +6,8 @@ import React, {  useRef, useState} from "react";
 // @ts-ignore
 import debounce from 'lodash.debounce';
 import {useDispatch} from "react-redux";
-import {setSearchValue} from "../../redux/slices/filterSlice";
+import {setSearchValue} from "../../redux/slices/filter/slice";
+
 
 const Search: React.FC = () => {
     const [value, setValue] = useState<string>('');

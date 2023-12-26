@@ -7,15 +7,16 @@ import { useEffect, useRef } from "react";
 import Pagination from "../components/Pagination/index";
 
 import {useSelector} from "react-redux";
-import FilterSlice, {FilterSelector, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
 
 import * as qs from "qs";
 
 import {Link, useNavigate} from "react-router-dom";
 import {fetchPizzas, PizzaSelector, SearchPizzaParams} from "../redux/slices/pizzaSlice";
 import {useAppDispatch} from "../redux/store";
-import FilterSliceState from '../redux/slices/filterSlice'
+
 import * as React from 'react';
+import { FilterSelector } from "../redux/slices/filter/selectors";
+import { setCategoryId, setCurrentPage } from "../redux/slices/filter/slice";
 
 
 
