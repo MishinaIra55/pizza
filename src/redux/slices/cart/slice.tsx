@@ -1,26 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../store";
-import {getCartFromLocalStorage} from "../../utils/getCartFromLocalStorage";
-import {calcTotalPrice} from "../../utils/calcTotalPrice";
-import CartItem from "../../components/CartItem";
+import {getCartFromLocalStorage} from "../../../utils/getCartFromLocalStorage";
+import {calcTotalPrice} from "../../../utils/calcTotalPrice";
 
-export type CartItem = {
-    id: string;
-    title: string;
-    price: number;
-    image: string;
-    type: string;
-    size: number;
-    count: number;
-};
+import {CartItem, CartSliceState} from "./types";
 
 
 
-//interface типизирует только обыект
-interface CartSliceState {
-    totalPrice: number;
-    items:CartItem[];
-};
 
 const cartData = getCartFromLocalStorage();
 
@@ -55,11 +40,11 @@ const cartSlice = createSlice({
             }
             state.totalPrice = state.items.reduce(
                 (amount, item) => item.price * item.count + amount, 0);
-            },
+        },
         removeItem(state, action: PayloadAction<string>) {
             // Удаляем элемент из корзины по идентификатору
             state.items = state.items.filter(object => object.id !== action.payload);
-            },
+        },
         clearItems(state) {
             // Очищаем корзину
             state.items = [];
@@ -68,8 +53,6 @@ const cartSlice = createSlice({
     },
 });
 
-export const CartSelector = (state: RootState) => state.cart;
-export const CartItemByIdSelector = (id: string) => (state: RootState) => state.cart.items.find((object) => object.id === id);
 
 export const {addItem, removeItem, clearItems, minusItem} = cartSlice.actions;
 
